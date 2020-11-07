@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <h2 class="card-title">Decision Tree Genrator</h2>
+  <h4 class="card-title"></h4>
+  <ul>
+    <li>
+      Decision tree algorithm falls under the category of supervised learning. They can be used to solve both regression and classification problems.
+    </li>
+    <li>
+Classification and Regression Tree (CART) algorithm deploys the method of the Gini Index to originate binary splits. In addition, decision tree algorithms exploit Information Gain to divide a node and Gini Index or Entropy is the passageway to weigh the Information Gain.
+    </li>
+    <li>
+      We can represent any boolean function on discrete attributes using the decision tree.
+    </li>
+  </ul>
+
+  <div class="container" style="text-align:center;">
+      <img src="{% static 'decision.png' %} " style="width:75%;height:100%;" />
+  </div>
+
+<p><b>Below are some assumptions that we made while using decision tree:</b></p>
+<ul>
+<li>At the beginning, we consider the whole training set as the root.</li>
+<li>Feature values are preferred to be categorical. If the values are continuous then they are discretized prior to building the model.</li>
+<li>On the basis of attribute values records are distributed recursively.</li>
+<li>We use statistical methods for ordering attributes as root or the internal node.</li>
+</ul>
+
+<div class="container" style="text-align:center;">
+      <img src="{% static 'decisiontree.png' %}" style="width:75%;height:100%;" />
+</div>
+<p>As you can see from the above image that Decision Tree works on the Sum of Product form which is also known as <i>Disjunctive Normal Form</i>. In the above image, we are predicting the use of computer in the daily life of the people.  </p>
+<p>In Decision Tree the major challenge is to identification of the attribute for the root node in each level. This process is known as attribute selection. We have two popular attribute selection measures:</p>
+<ol>
+<li>Information Gain</li>
+<li>Gini Index</li>
+</ol>
+<br/>
+<b>Gini Index</b>
+<ul>
+<li>Gini Index is a metric to measure how often a randomly chosen element would be incorrectly identified.</li>
+<li>It means an attribute with lower Gini index should be preferred.</li>
+<li>Sklearn supports “Gini” criteria for Gini Index and by default, it takes “gini” value.</li>
+<li>The Formula for the calculation of the of the Gini Index is given below.</li>
+<p><img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-d0d96c305b893bd453f1160f0cbc7b67_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="Gini Index = 1 - \sum_{j}^{}p_{j}^{2}" title="Rendered by QuickLaTeX.com" height="36" width="271" style="vertical-align: -12px;"></p>
+<p><b>Example:</b><br>
+Lets consider the dataset in the image below and draw a decision tree using gini index.</p>
+<table width="100%">
+<thead>
+<tr>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">Index</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">A</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">B</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">C</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">D</th>
+<th style="padding:8px;background-color:#4CB96B;text-align:center">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">4.8</td>
+<td style="text-align:center">3.4</td>
+<td style="text-align:center">1.9</td>
+<td style="text-align:center">0.2</td>
+<td style="text-align:center">positive</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>3</td>
+<td>1.6</td>
+<td>1.2</td>
+<td>positive</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">3.4</td>
+<td style="text-align:center">1.6</td>
+<td style="text-align:center">0.2</td>
+<td style="text-align:center">positive</td>
+</tr>
+<tr>
+<td>4</td>
+<td>5.2</td>
+<td>3.5</td>
+<td>1.5</td>
+<td>0.2</td>
+<td>positive</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5.2</td>
+<td style="text-align:center">3.4</td>
+<td style="text-align:center">1.4</td>
+<td style="text-align:center">0.2</td>
+<td style="text-align:center">positive</td>
+</tr>
+<tr>
+<td>6</td>
+<td>4.7</td>
+<td>3.2</td>
+<td>1.6</td>
+<td>0.2</td>
+<td>positive</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">4.8</td>
+<td style="text-align:center">3.1</td>
+<td style="text-align:center">1.6</td>
+<td style="text-align:center">0.2</td>
+<td style="text-align:center">positive</td>
+</tr>
+<tr>
+<td>8</td>
+<td>5.4</td>
+<td>3.4</td>
+<td>1.5</td>
+<td>0.4</td>
+<td>positive</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">3.2</td>
+<td style="text-align:center">4.7</td>
+<td style="text-align:center">1.4</td>
+<td style="text-align:center">negative</td>
+</tr>
+<tr>
+<td>10</td>
+<td>6.4</td>
+<td>3.2</td>
+<td>4.7</td>
+<td>1.5</td>
+<td>negative</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">6.9</td>
+<td style="text-align:center">3.1</td>
+<td style="text-align:center">4.9</td>
+<td style="text-align:center">1.5</td>
+<td style="text-align:center">negative</td>
+</tr>
+<tr>
+<td>12</td>
+<td>5.5</td>
+<td>2.3</td>
+<td>4</td>
+<td>1.3</td>
+<td>negative</td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td style="text-align:center">6.5</td>
+<td style="text-align:center">2.8</td>
+<td style="text-align:center">4.6</td>
+<td style="text-align:center">1.5</td>
+<td style="text-align:center">negative</td>
+</tr>
+<tr>
+<td>14</td>
+<td>5.7</td>
+<td>2.8</td>
+<td>4.5</td>
+<td>1.3</td>
+<td>negative</td>
+</tr>
+<tr>
+<td style="text-align:center">15</td>
+<td style="text-align:center">6.3</td>
+<td style="text-align:center">3.3</td>
+<td style="text-align:center">4.7</td>
+<td style="text-align:center">1.6</td>
+<td style="text-align:center">negative</td>
+</tr>
+<tr>
+<td>16</td>
+<td>4.9</td>
+<td>2.4</td>
+<td>3.3</td>
+<td>1</td>
+<td>negative</td>
+</tr>
+</tbody>
+</table>
+<p>In the dataset above there are 5 attributes from which attribute E is the predicting feature which contains 2(Positive &amp; Negative) classes. We have an equal proportion for both the classes.<br>
+In Gini Index, we have to choose some random values to categorize each attribute. These values for this dataset are:</p>
+<pre>    A       B        C         D
+  &gt;= 5     &gt;= 3.0      &gt;= 4.2    &gt;= 1.4
+   &lt; 5      &lt; 3.0       &lt; 4.2     &lt; 1.4
+</pre>
+<p><b>Calculating Gini Index for Var A:</b><br>
+<b>Value &gt;= 5: 12</b><br>
+Attribute A &gt;= 5 &amp; class = positive: <img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-f7056a8e0337f2c186f94c645bb38148_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\frac{5}{12}" title="Rendered by QuickLaTeX.com" height="34" width="21" style="vertical-align: -10px;"><br>
+Attribute A &gt;= 5 &amp; class = negative: <img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-3b4ddc633afef4121379fefcc8e8206a_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\frac{7}{12}" title="Rendered by QuickLaTeX.com" height="34" width="21" style="vertical-align: -10px;"><br>
+Gini(5, 7) = 1 – <img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-9e4da24121695bf83629d453d625b97a_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\left [ \left ( \frac{5}{12} \right )^{2} + \left ( \frac{7}{12} \right )^{2}\right ]                  = 0.4860" title="Rendered by QuickLaTeX.com" height="49" width="283" style="vertical-align: -18px;"><br>
+<b>Value &lt; 5: 4</b><br>
+Attribute A &lt; 5 &amp; class = positive: <img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-178f95940099e764dd39c971e4608029_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\frac{3}{4}" title="Rendered by QuickLaTeX.com" height="33" width="11" style="vertical-align: -9px;"><br>
+Attribute A &lt; 5 &amp; class = negative: <img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-8302ac1e5ac35dfce9c56b366cc96eb2_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\frac{1}{4}" title="Rendered by QuickLaTeX.com" height="33" width="11" style="vertical-align: -9px;"><br>
+Gini(3, 1) = 1 – <img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-cd839511a4c9b5d7a8253d8b21cb5e5a_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\left [ \left ( \frac{3}{4} \right )^{2} + \left ( \frac{1}{4} \right )^{2}\right ]                  = 0.375" title="Rendered by QuickLaTeX.com" height="49" width="249" style="vertical-align: -18px;"><br>
+By adding weight and sum each of the gini indices:<br>
+
+<p><b>Calculating Gini Index for Var B:</b><br>
+<b>Value &gt;= 3: 12</b><br>
+Attribute B &gt;= 3 &amp; class = positive: <img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-3283a888bd940772bc10dec8ff1bf380_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\frac{8}{12}" title="Rendered by QuickLaTeX.com" height="34" width="21" style="vertical-align: -10px;"><br>
+Attribute B &gt;= 5 &amp; class = negative: <img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-723c198ed81bc3cb4db2493653d3fe45_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\frac{4}{12}" title="Rendered by QuickLaTeX.com" height="34" width="21" style="vertical-align: -10px;"><br>
+Gini(5, 7) = 1 – <img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-e51ae059395978963276fb4824fdd76e_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\left [ \left ( \frac{8}{12} \right )^{2} + \left ( \frac{4}{12} \right )^{2}\right ]                  = 0.4460" title="Rendered by QuickLaTeX.com" height="49" width="283" style="vertical-align: -18px;"><br>
+<b>Value &lt; 3: 4</b><br>
+Attribute A &lt; 3 &amp; class = positive: <img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-4da80065471191db4b107e44a2f35d81_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\frac{0}{4}" title="Rendered by QuickLaTeX.com" height="33" width="11" style="vertical-align: -9px;"><br>
+Attribute A &lt; 3 &amp; class = negative: <img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-c6f1501db41fd12062abce5fe4b65e2b_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\frac{4}{4}" title="Rendered by QuickLaTeX.com" height="33" width="11" style="vertical-align: -9px;"><br>
+Gini(3, 1) = 1 – <img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-f9a8e3f184b7cbcf5ff48ae37a627a98_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\left [ \left ( \frac{0}{4} \right )^{2} + \left ( \frac{4}{4} \right )^{2}\right ]                  = 1" title="Rendered by QuickLaTeX.com" height="49" width="202" style="vertical-align: -18px;"><br>
+By adding weight and sum each of the gini indices:<br>
+<img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-f5ddd1804d725683801c096a59416d8f_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="gini(Target, B) = \left ( \frac{12}{16} \right ) * (0.446) + \left ( \frac{0}{16} \right ) * (0) = 0.3345" title="Rendered by QuickLaTeX.com" height="34" width="75%" style="vertical-align: -10px;"></p>
+<p>Using the same approach we can calculate the Gini index for C and D attributes.</p>
+<pre>             Positive    Negative
+For A|&gt;= 5.0    5       7
+     |&lt;5    3       1
+Ginin Index of A = 0.45825
+</pre>
+<pre>             Positive    Negative
+For B|&gt;= 3.0    8       4
+     |&lt; 3.0    0       4
+Gini Index of B= 0.3345
+</pre>
+<pre>             Positive    Negative
+For C|&gt;= 4.2    0       6
+     |&lt; 4.2    8       2
+Gini Index of C= 0.2
+</pre>
+<pre>             Positive    Negative
+For D|&gt;= 1.4    0       5
+     |&lt; 1.4    8       3
+Gini Index of D= 0.273
+ </pre>
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/qa.png" alt="" class="aligncenter size-ful wp-image-276357" title="Click to enlarge" style="cursor: pointer;width:75%"></p>
+<p>The most notable types of decision tree algorithms are:-</p>
+<p>1. <strong> Iterative Dichotomiser 3 (ID3):</strong> This algorithm uses Information Gain to decide which attribute is to be used classify the current subset of the data. For each level of the tree, information gain is calculated for the remaining data recursively.</p>
+<p>2. <strong> C4.5:</strong> This algorithm is the successor of the ID3 algorithm. This algorithm uses either Information gain or Gain ratio to decide upon the classifying attribute. It is a direct improvement from the ID3 algorithm as it can handle both continuous and missing attribute values.</p>
+<p>3. <strong> Classification and Regression Tree(CART):</strong> It is a dynamic learning algorithm which can produce a regression tree as well as a classification tree depending upon the dependent variable.</p>
+
+	</ul>
+  <p class="card-text">
+    
+  </p>
+  <p class="card-text">
+  
+  </p>
+{% endblock %}

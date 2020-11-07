@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Select CSV File....</h2>
+  <br>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col-lg-6 col-sm-8 form-group " class="choose_file">
+      <input type="file" required name="document">
+    </div>
+    <div class="col-lg-6 col-sm-4 form-group" class="submit_file">
+      <button type="submit" class="btn btn-outline-dark">Submit file</button>
+    </div>
+  </form>
+  {% if image_name %}
+  <br>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" style="height:auto">
+        <img src = "/media/{{image_name}}" id="result_image" width="100%"/>
+       <div class="downloadButton">
+        <button class="btn btn-outline-dark" style="float: right;margin-bottom:-2px;">
+          <a href="/media/{{image_name}}" id="link_to_image" style="text-decoration:none;color:black" download>
+            Download
+            <i class="fa fa-download"></i>
+          </a>
+        </button>
+       </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  $(document).ready(function () {
+    $(".downloadButton").hover(() => {
+      console.log("Button is HOvered")
+      $("#link_to_image").css("color", "white")
+    },
+      () => {
+        $("#link_to_image").css("color", "black")
+      }
+    )
+
+  });
+
+</script>
+
+  {% endif %}
+{% endblock %}
