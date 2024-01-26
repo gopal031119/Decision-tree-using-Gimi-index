@@ -5,10 +5,6 @@
 
 Code example used in the tutorial series on Django File Upload.
 
-Watch it on YouTube: [Django 2.1 File Upload](https://www.youtube.com/playlist?list=PLLxk3TkuAYnpm24Ma1XenNeq1oxxRcYFT)
-
-Subscribe to my YouTube channel: [youtube.com/VitorFreitas](https://www.youtube.com/VitorFreitas?sub_confirmation=1)
-
 ## Running the Project Locally
 
 First, clone the repository to your local machine:
